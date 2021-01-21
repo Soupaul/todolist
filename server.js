@@ -7,17 +7,38 @@ app.use(express.static("public"));
 
 let port = 3000;
 
-app.get("/",function(req,res){
-    // res.send("<h1>Welcome to the Home Page</h1>");
-    res.sendFile("index.html");
+const users = [];
+
+const weekdays = ["Monday", "tuesday", "Friday"];
+
+app.set("view engine", "ejs");
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get("/", function (req, res) {
+  res.render("home", { name: "Mohit", dept: "CSE" });
 });
 
-app.get("/about",function(req,res){
-    res.send("<p>Welcome to About Page</p>");
+app.post("/form", function (req, res) {
+  console.log(req.body);
+  users.push(req.body);
+  console.log(users);
+  res.send("Your details have been submitted");
 });
 
-app.listen(port,function(){
+app.get("/about", function (req, res) {
+  res.send("<p>Welcome to About Page</p>");
+});
 
-    console.log(`Server started successfully at: http://localhost:${port}`);
+app.get("/day", function (req, res) {
+  // some calculations
+  res.render("weekday", { days: weekdays });
+});
 
+app.get("/form", function (req, res) {
+  res.render("form");
+});
+
+app.listen(port, function () {
+  console.log(`Server started successfully at: http://localhost:${port}`);
 });

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+    <% for (let i=0; i<days.length; i++){ %>
+        <% if (days[i] != "Monday") { %>
+        <p><%= days[i] %></p>
+        <% } %>
+    <% } %>
+    <% days.forEach(function(day){ %>
+         <p><%= day %></p>
+    <% }) %>
+</body>
+</html>
