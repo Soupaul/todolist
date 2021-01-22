@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>ToDo List</title>
+</head>
+<body>
+    <div class="box" id="heading">
+        <h1>
+            <%= weekday %> 
+        </h1>
+    </div>
+    <div class="box">
+        <ul>
+            <% tasks.forEach(function(task, index) { %>
+                <form action="/delete" method="POST">
+                    <div class="item">
+                        <input type="checkbox" name="position" value="<%= index %>" onchange="this.form.submit()">
+                        <p><%= task %></p>
+                    </div>
+                </form>
+            <% }) %>
+        </ul>
+        <form action="/" method="POST" class="item">
+            <input type="text" name="newTask" placeholder="New Item" autocomplete="off">
+            <button type="submit" id="submit-btn">+</button>
+        </form>
+    </div>
+<footer>
+    Made with ❤️ by The GNU/Linux Users' Group
+  </footer>
+</body>
+</html>
